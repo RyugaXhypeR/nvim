@@ -465,6 +465,8 @@ M.gitsigns = {
       end,
       "Toggle deleted",
     },
+
+    ["<leader>lg"] = {":LazyGit<CR>", "LazyGit"},
   },
 }
 
