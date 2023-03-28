@@ -218,6 +218,8 @@ local plugins = {
       require("plugins.configs.copilot")
     end,
   },
+
+  ["kdheepak/lazygit.nvim"] = {},
 }
 
 -- Load all plugins
