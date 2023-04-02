@@ -22,6 +22,7 @@ M.ui = {
   changed_themes = {},
   theme_toggle = { "onedark", "one_light" },
   theme = "tokyonight", -- default theme
+  theme = "solarized_dark",
   transparency = false,
 }
 
