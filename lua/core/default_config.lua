@@ -18,7 +18,7 @@ M.ui = {
   hl_override = {},
   changed_themes = {},
   theme = "solarized_dark",
-  transparency = false,
+  transparency = true,
 }
 
 M.plugins = {}
