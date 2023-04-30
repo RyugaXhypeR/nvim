@@ -205,19 +205,15 @@ local plugins = {
     end,
   },
 
-  ["neoclide/coc.nvim"] = {
-    disable = false,
-    branch = "release",
-    config = function()
-      require("plugins.configs.coc")
-    end,
-  },
-
   ["github/copilot.vim"] = {
     config = function()
       require("plugins.configs.copilot")
     end,
   },
+
+  ["lvimuser/lsp-inlayhints.nvim"] = {},
+
+  ["tpope/vim-fugitive"] = {},
 }
 
 -- Load all plugins
