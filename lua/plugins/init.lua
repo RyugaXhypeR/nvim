@@ -217,6 +217,8 @@ local plugins = {
     end
   },
   ["tpope/vim-fugitive"] = {},
+  ["tpope/vim-surround"] = {},
+  ["christoomey/vim-tmux-navigator"] = {},
 }
 
 -- Load all plugins
