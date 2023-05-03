@@ -211,8 +211,11 @@ local plugins = {
     end,
   },
 
-  ["lvimuser/lsp-inlayhints.nvim"] = {},
-
+  ["lvimuser/lsp-inlayhints.nvim"] = {
+    config = function()
+      require("plugins.configs.others").inlay_hints()
+    end
+  },
   ["tpope/vim-fugitive"] = {},
 }
 
