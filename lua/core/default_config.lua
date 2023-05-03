@@ -12,8 +12,7 @@ M.options = {
 M.ui = {
   -- hl = highlights
   hl_add = {
-    CocErrorSign = {fg = "#f07178"},
-    CocInlayHint =  {fg = "#1f2f43"},
+    LspInlayHint =  {fg = "#1f2f43"},
   },
   hl_override = {},
   changed_themes = {},
