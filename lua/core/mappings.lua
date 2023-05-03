@@ -22,11 +22,11 @@ M.general = {
   n = {
     ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
 
-    -- switch between windows
-    ["<C-h>"] = { "<C-w>h", "window left" },
-    ["<C-l>"] = { "<C-w>l", "window right" },
-    ["<C-j>"] = { "<C-w>j", "window down" },
-    ["<C-k>"] = { "<C-w>k", "window up" },
+    -- -- switch between windows
+    -- ["<C-h>"] = { "<C-w>h", "window left" },
+    -- ["<C-l>"] = { "<C-w>l", "window right" },
+    -- ["<C-j>"] = { "<C-w>j", "window down" },
+    -- ["<C-k>"] = { "<C-w>k", "window up" },
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "save file" },
@@ -171,6 +171,13 @@ M.lspconfig = {
       "lsp signature_help",
     },
 
+    ["<leader>li"] = {
+      function()
+        vim.cmd(":LspInfo")
+      end,
+      "lsp info",
+    },
+
     ["<leader>D"] = {
       function()
         vim.lsp.buf.type_definition()
@@ -254,7 +261,7 @@ M.lspconfig = {
       end,
       "list workspace folders",
     },
-  },
+  }
 }
 
 M.nvimtree = {
@@ -465,8 +472,6 @@ M.gitsigns = {
       end,
       "Toggle deleted",
     },
-
-    ["<leader>lg"] = {":LazyGit<CR>", "LazyGit"},
   },
 }
 
