@@ -10,11 +10,22 @@ require "nvchad_ui.lsp"
 local M = {}
 local utils = require "core.utils"
 
+vim.diagnostic.config({
+  virtual_text = {
+    -- source = "always",  -- Or "if_many"
+    prefix = '●', -- Could be '■', '▎', 'x'
+  },
+  severity_sort = true,
+  float = {
+    source = "always",  -- Or "if_many"
+  },
+})
+
 -- export on_attach & capabilities for custom lspconfigs
 
 M.on_attach = function(client, bufnr)
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
+  client.server_capabilities.documentFormattingProvider = true
+  client.server_capabilities.documentRangeFormattingProvider = true
 
   utils.load_mappings("lspconfig", { buffer = bufnr })
 
@@ -96,11 +107,43 @@ lspconfig.clangd.setup {
     "--suggest-missing-includes",
     "--clang-tidy-checks=-*,bugprone-*,cert-*,clang-analyzer-*,cppcoreguidelines-*,misc-*,modernize-*,performance-*,portability-*,readability-*",
   },
+
+  filetypes = { "c", "cpp", "objc", "objcpp", "h", "hpp", "m", "mm" },
 }
 
 lspconfig.asm_lsp.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
+}
+
+lspconfig.pyright.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "workspace",
+        typeCheckingMode = "strict",
+        stubPath = vim.fn.expand "~/.config/nvim/stubs",
+      },
+    },
+  },
+}
+
+lspconfig.ruff.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+
+  filetypes = { "python" },
+  cmd = { "ruff" },
+  settings = {
+    ruff = {
+      pythonPath = vim.fn.expand "~/.virtualenvs/ruff/bin/python",
+    },
+  },
 }
 
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
