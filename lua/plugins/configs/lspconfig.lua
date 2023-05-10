@@ -1,6 +1,6 @@
-local present, lspconfig = pcall(require, "lspconfig")
+local lsp_present, lspconfig = pcall(require, "lspconfig")
 
-if not present then
+if not lsp_present then
   return
 end
 
@@ -12,16 +12,13 @@ local utils = require "core.utils"
 
 vim.diagnostic.config({
   virtual_text = {
-    -- source = "always",  -- Or "if_many"
-    prefix = '●', -- Could be '■', '▎', 'x'
+    prefix = '●',
   },
   severity_sort = true,
   float = {
-    source = "always",  -- Or "if_many"
+    source = "always",
   },
 })
-
--- export on_attach & capabilities for custom lspconfigs
 
 M.on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = true
@@ -75,7 +72,7 @@ lspconfig.lua_ls.setup {
   },
 }
 
-lspconfig.rust_analyzer.setup {
+lspconfig.rust_analyzer.setup({
   on_attach = M.on_attach,
   capabilities = M.capabilities,
 
@@ -92,7 +89,7 @@ lspconfig.rust_analyzer.setup {
       },
     },
   },
-}
+})
 
 lspconfig.clangd.setup {
   on_attach = M.on_attach,
@@ -133,17 +130,9 @@ lspconfig.pyright.setup {
   },
 }
 
-lspconfig.ruff.setup {
+lspconfig.ruff_lsp.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
-
-  filetypes = { "python" },
-  cmd = { "ruff" },
-  settings = {
-    ruff = {
-      pythonPath = vim.fn.expand "~/.virtualenvs/ruff/bin/python",
-    },
-  },
 }
 
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
