@@ -153,7 +153,7 @@ local plugins = {
 
   ["goolord/alpha-nvim"] = {
     after = "base46",
-    disable = true,
+    disable = false,
     config = function()
       require "plugins.configs.alpha"
     end,
@@ -216,9 +216,17 @@ local plugins = {
       require("plugins.configs.others").inlay_hints()
     end
   },
+
   ["tpope/vim-fugitive"] = {},
   ["tpope/vim-surround"] = {},
   ["christoomey/vim-tmux-navigator"] = {},
+
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+    config = function()
+      require("plugins.configs.null_ls")
+    end
+
+  },
 }
 
 -- Load all plugins
