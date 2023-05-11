@@ -1,3 +1,4 @@
+-- Get the current git branch.
 local function get_git_branch()
   local branch = vim.fn.systemlist("git rev-parse --abbrev-ref HEAD")[1]
   if branch == "HEAD" then
@@ -6,6 +7,8 @@ local function get_git_branch()
   return branch
 end
 
+-- Extract the github username and repo name from the git config.
+-- This will make it so that repos cloned over ssh will work as well.
 local function get_user_and_repo()
   local github_url = vim.fn.systemlist("git config --get remote.origin.url")[1]
 
@@ -19,6 +22,7 @@ local function get_user_and_repo()
   return gh_user, gh_repo
 end
 
+-- Construct the github url using file path and line numbers.
 local function get_highlighted_link(file_path, ln_start, ln_end)
   local user, repo = get_user_and_repo()
   local branch = get_git_branch()
