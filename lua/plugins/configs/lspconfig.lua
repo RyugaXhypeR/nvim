@@ -95,16 +95,6 @@ lspconfig.clangd.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
 
-  cmd = {
-    "clangd",
-    "--background-index",
-    "--clang-tidy",
-    "--completion-style=bundled",
-    "--header-insertion=iwyu",
-    "--suggest-missing-includes",
-    "--clang-tidy-checks=-*,bugprone-*,cert-*,clang-analyzer-*,cppcoreguidelines-*,misc-*,modernize-*,performance-*,portability-*,readability-*",
-  },
-
   filetypes = { "c", "cpp", "objc", "objcpp", "h", "hpp", "m", "mm" },
 }
 
@@ -133,6 +123,15 @@ lspconfig.pyright.setup {
 lspconfig.ruff_lsp.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
+
+  cmd = { "ruff-lsp", "--stdio" },
+  settings = {
+    ruff = {
+      diagnostics = {
+        enable = true,
+      },
+    }
+  },
 }
 
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
